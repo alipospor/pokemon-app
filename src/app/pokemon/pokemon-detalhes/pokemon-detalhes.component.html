@@ -1,0 +1,33 @@
+<po-page-default p-title="#{{ pokemon?.id }} {{ pokemon?.name }}">
+
+    <div class="po-row">
+        <po-avatar class="po-mb-1" p-src="{{ pokemon?.sprites.front_default }}" p-size="xl"></po-avatar>
+    </div>
+
+    <div class="po-ml-2">
+        <po-tag class="po-ml-1" *ngFor="let type of pokemonType" [p-color]="returnCollor(type)" p-icon
+            p-value="{{ type }}">
+        </po-tag>
+    </div>
+
+    <po-page-detail p-title="Detalhes do Pókemon">
+        <div class="po-row po-mb-4">
+            <po-divider class="po-md-12" p-label="Status"></po-divider>
+
+            <div class="po-md-5">
+                <p><strong>Altura:</strong> {{ pokemon?.height }}</p>
+                <p><strong>Peso:</strong> {{ pokemon?.weight }}</p>
+                <p><strong>Rendimento experiência base:</strong> {{ pokemon?.base_experience }}</p>
+            </div>
+
+            <div class="card text-white {{ pokemonType[0] | lowercase }}" style="width: 18rem;">
+                <div class="card-header">Habilidades (Movesets)</div>
+                <div class="card-body">
+                    <p class="card-text">{{ pokemonAbilities | uppercase }}
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </po-page-detail>
+</po-page-default>

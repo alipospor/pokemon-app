@@ -1,0 +1,26 @@
+<po-page-default p-title="Lista Pokemon">
+    <po-list-view [p-items]="tablePokemon" class="po-lg-10">
+
+        <ng-template p-list-view-content-template let-tablePokemon>
+            <div class="po-row">
+                <po-info class="po-md-3 po-lg-1" p-label="Ndex" [p-value]="tablePokemon?.ndex"> </po-info>
+
+                <po-info class="po-md-3 po-lg-2" p-label="Pokemon" [p-value]="tablePokemon?.pokemon | camelCase">
+                </po-info>
+
+                <po-info class="po-md-3 po-lg-3" p-label="Tipo" [p-value]="tablePokemon?.tipo"> </po-info>
+
+                <po-avatar class="po-md-3 po-lg-3" p-label="Imagem" [p-src]="tablePokemon?.imagem"></po-avatar>
+            </div>
+
+            <div class="po-row">
+                <po-button class="po-sm-12" p-label="Detalhes" routerLink="/detalhe/{{tablePokemon?.pokemon}}">
+                </po-button>
+            </div>
+
+        </ng-template>
+
+    </po-list-view>
+
+
+</po-page-default>
