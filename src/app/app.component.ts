@@ -13,7 +13,7 @@ export class AppComponent {
 
   }
 
-  readonly menus: Array<PoMenuItem> = [
+  public menuItems: Array<PoMenuItem> = [
     { label: 'Home', action: this.onClick.bind(this), icon: 'po-icon-home' },
   ];
 

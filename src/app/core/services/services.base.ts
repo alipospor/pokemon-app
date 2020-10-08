@@ -1,8 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Paging } from '../models/paging.model';
+
+
+/* Models */
 import { PokemonBase } from '../models/pokemon-base.model';
-import { Pokemon } from '../models/pokemon.model';
+import { PokemonDetalhe } from '../models/pokemon-detalhe.model';
+import { Paging } from '../models/paging.model';
 
 export abstract class ServiceBase<T> {
 
@@ -26,10 +29,10 @@ export abstract class ServiceBase<T> {
         return this.httpClient.get<PokemonBase>(`${this.PATH}${paginacao.toString()}`);
     }
 
-    obterPorNome(nome: string): Observable<Pokemon> {
+    obterPorNome(nome: string): Observable<PokemonDetalhe> {
 
         if (nome) {
-            return this.httpClient.get<Pokemon>(`${this.PATH}/${nome}`);
+            return this.httpClient.get<PokemonDetalhe>(`${this.PATH}/${nome}`);
         }
     }
 }

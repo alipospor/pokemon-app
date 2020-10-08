@@ -1,26 +1,29 @@
-<po-page-default p-title="Lista Pokemon">
-    <po-list-view [p-items]="tablePokemon" class="po-lg-10">
+<po-page-default p-title="Lista Pokemon" class="">
 
-        <ng-template p-list-view-content-template let-tablePokemon>
-            <div class="po-row">
-                <po-info class="po-md-3 po-lg-1" p-label="Ndex" [p-value]="tablePokemon?.ndex"> </po-info>
+    <div class="container">
+        <div class="row">
+            <div class="card-deck">
 
-                <po-info class="po-md-3 po-lg-2" p-label="Pokemon" [p-value]="tablePokemon?.pokemon | camelCase">
-                </po-info>
+                <div class="col mb-4" *ngFor="let pokemon of pokemonList">
 
-                <po-info class="po-md-3 po-lg-3" p-label="Tipo" [p-value]="tablePokemon?.tipo"> </po-info>
+                    <div class="card ">
+                        <div class="card-header">
+                            # {{ pokemon?.ndex }}
+                        </div>
+                        <img class="card-img-top" src="{{ pokemon?.imagem }}" alt="Imagem de capa do card"
+                            style="max-width: 12rem;">
+                        <div class="card-body">
 
-                <po-avatar class="po-md-3 po-lg-3" p-label="Imagem" [p-src]="tablePokemon?.imagem"></po-avatar>
+                            <h5 class="card-title">{{ pokemon?.pokemon |  camelCase}}</h5>
+                        </div>
+                        <div class="card-footer">
+                            <app-type *ngFor="let type of pokemon.tipo" type="{{ type }}"></app-type>
+                        </div>
+                    </div>
+
+                </div>
+
             </div>
-
-            <div class="po-row">
-                <po-button class="po-sm-12" p-label="Detalhes" routerLink="/detalhe/{{tablePokemon?.pokemon}}">
-                </po-button>
-            </div>
-
-        </ng-template>
-
-    </po-list-view>
-
-
+        </div>
+    </div>
 </po-page-default>

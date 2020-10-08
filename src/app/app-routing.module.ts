@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { PokemonDetalhesComponent } from './pokemon/pokemon-detalhes/pokemon-detalhes.component';
 import { PokemonComponent } from './pokemon/pokemon.component';
 
-const routes: Routes = [
+const appRoutes: Routes = [
   {
     path: '',
     component: AppComponent,
@@ -17,7 +17,11 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [
+    RouterModule.forRoot(appRoutes)
+  ],
+  exports: [
+    RouterModule
+  ]
 })
 export class AppRoutingModule { }

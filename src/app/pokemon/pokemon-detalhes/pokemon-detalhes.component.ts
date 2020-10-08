@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { PokemonService } from '../pokemon.service';
+/* Models */
+import { PokemonDetalhe } from 'src/app/core/models/pokemon-detalhe.model';
 
-import { Pokemon } from 'src/app/core/models/pokemon.model';
+/* Service */
+import { PokemonService } from '../pokemon.service';
 import { ColorService } from 'src/app/core/services/color-service.service';
+
 
 @Component({
   selector: 'app-pokemon-detalhes',
@@ -20,7 +23,7 @@ export class PokemonDetalhesComponent implements OnInit {
   ) { }
 
   /* Variavel que guarda os dados do pokemon */
-  public pokemon: Pokemon;
+  public pokemon: PokemonDetalhe;
   /* Variavel que organiza os nomes das habilidades do pokemon */
   public pokemonAbilities: string;
   /* Armazena o tipo do pokemon */
@@ -39,7 +42,7 @@ export class PokemonDetalhesComponent implements OnInit {
     )
   }
 
-  prencherDetalhe(detalhes?: Pokemon) {
+  prencherDetalhe(detalhes?: PokemonDetalhe) {
     let pokemonAbilities: string[] = [];
     this.pokemonType = [];
 
