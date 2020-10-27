@@ -1,11 +1,13 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Paging } from '../core/models/paging.model';
+import { PoButtonGroupItem } from '@po-ui/ng-components';
 
 /* Model */
 import { PokemonListagem } from '../core/models/pokemon-listagem.model';
+import { Paging } from '../core/models/paging.model';
 
 /* Service */
 import { PokemonService } from './pokemon.service';
+import { PokemonBase } from '../core/models/pokemon-base.model';
 
 @Component({
   selector: 'app-pokemon',
@@ -14,20 +16,19 @@ import { PokemonService } from './pokemon.service';
 
 export class PokemonComponent implements OnInit {
 
-  constructor(private pokemonService: PokemonService) { }
+  constructor(private service: PokemonService) { }
 
   private _paginacao: Paging = new Paging();
 
   public pokemonList: PokemonListagem[] = [];
 
   ngOnInit() {
-    this.pokemonService.obterPokemons()
-      .subscribe(dados => {
 
-        this.pokemonList = this.pokemonService.ajustarDados(dados);
+    this.service.obterPokemons().subscribe(
+      dados => {
+        this.pokemonList = this.service.getPokemons(dados);
       }
-      );
-
+    );
   }
 
   pokemon(nome?: string) {

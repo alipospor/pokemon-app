@@ -1,4 +1,4 @@
 export class AppConfig {
 
-    static POKE_SIZE = 151;
+    static POKE_SIZE = 10;
 }

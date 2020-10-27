@@ -11,7 +11,7 @@ const appRoutes: Routes = [
     component: AppComponent,
     children: [
       { path: '', component: PokemonComponent },
-      { path: 'detalhe/:pokemon', component: PokemonDetalhesComponent },
+      { path: 'pokemon-detalhe/:pokemon', component: PokemonDetalhesComponent },
     ],
   }
 ];

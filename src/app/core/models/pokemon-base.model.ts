@@ -6,6 +6,7 @@ export interface PokemonBase {
     previous: string,
     results: [{
         name: string,
+        url: string
     }]
 
 }

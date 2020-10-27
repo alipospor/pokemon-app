@@ -1,7 +1,7 @@
 export class PokemonListagem {
 
-    public ndex: string;
-    public pokemon: string;
+    public order: number;
+    public name: string;
     public imagem: string;
     public tipo: string[];
 

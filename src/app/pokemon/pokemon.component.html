@@ -8,13 +8,13 @@
 
                     <div class="card ">
                         <div class="card-header">
-                            # {{ pokemon?.ndex }}
+                            # {{ pokemon?.order }}
                         </div>
-                        <img class="card-img-top" src="{{ pokemon?.imagem }}" alt="Imagem de capa do card"
+                        <img class="card-img-top" src="{{ pokemon?.imagem }}" alt="Imagem {{ pokemon?.name }}"
                             style="max-width: 12rem;">
                         <div class="card-body">
 
-                            <h5 class="card-title">{{ pokemon?.pokemon |  camelCase}}</h5>
+                            <h5 class="card-title">{{ pokemon?.name }}</h5>
                         </div>
                         <div class="card-footer">
                             <app-type *ngFor="let type of pokemon.tipo" type="{{ type }}"></app-type>
@@ -24,6 +24,11 @@
                 </div>
 
             </div>
+        </div>
+        <div>
+            <po-button>
+
+            </po-button>
         </div>
     </div>
 </po-page-default>

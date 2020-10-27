@@ -1,15 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 /* Service */
 import { ServiceBase } from '../core/services/services.base';
 
-/* Model */
+/* Models */
 import { PokemonDetalhe } from '../core/models/pokemon-detalhe.model';
 import { PokemonBase } from '../core/models/pokemon-base.model';
 import { Paging } from '../core/models/paging.model';
 import { PokemonListagem } from '../core/models/pokemon-listagem.model';
+
 
 @Injectable({
   providedIn: 'root'
@@ -22,64 +24,36 @@ export class PokemonService extends ServiceBase<any> {
     super(httpClient);
   }
 
-  obterPokemons(paginacao?: Paging) {
+  obterPokemons(paginacao?: Paging): Observable<PokemonBase> {
 
     if (!paginacao) {
       paginacao = new Paging();
     }
 
-    return this.obter(paginacao).pipe(
-      tap(console.log)
-    );
+    return this.obter(paginacao);
   }
 
-  pegarDadosPokemonTabela(pokemons: PokemonBase): PokemonDetalhe[] {
-    let resultPokemons = [];
+  obterDetalhesNome(nome: string): Observable<PokemonDetalhe> {
 
-    if (pokemons.results.length > 0) {
-      pokemons.results.forEach(element => {
-
-        this.obterPorNome(element.name).subscribe(
-          response => {
-            resultPokemons.push(response);
-          }
-        );
-      });
-
-    }
-    /* 
-        console.log(resultPokemons) */
-    return resultPokemons;
+    return this.obterPorNome(nome);
   }
 
-  ajustarDados(response?: PokemonBase): PokemonListagem[] {
+  /* Funções para prencher os dados de pokemons de acordo com a minha listagem */
+  getPokemons(pokemons: PokemonBase): PokemonListagem[] {
     /* Iniciando um array de Pokemon listagem */
     let listaPokemon: Array<PokemonListagem> = [];
 
-    if (response) {
+    if (pokemons) {
 
-      response.results.forEach(pokemon => {
+      pokemons.results.forEach(pokemon => {
+        let dadosPokemon: PokemonListagem = new PokemonListagem();
 
-        this.obterPorNome(pokemon.name).subscribe(
-          retorno => {
-            /* Iniciando um objeto de pokemonlistagem */
-            let dadosPokemon: PokemonListagem = new PokemonListagem();
+        /* order mais conhecido como ID */
+        dadosPokemon.order = + pokemon.url.split('/')[pokemon.url.split('/').length - 2]
 
-            /* Setando os elementos do objeto PokemonListagem */
-            dadosPokemon.ndex = retorno.id;
-            dadosPokemon.pokemon = retorno.name;
-            dadosPokemon.imagem = retorno.sprites.front_default;
+        this.getDetails(dadosPokemon);
 
-            /* Iniciando elemento */
-            dadosPokemon.tipo = [];
-            retorno.types.forEach(element => {
-              dadosPokemon.tipo.push(element.type.name);
-            });
-
-            /* Inserir o Objeto (dadosPokemon) no meu array de pokemonlistagem (listaPokemon) */
-            listaPokemon.push(dadosPokemon);
-          }
-        )
+        listaPokemon.push(dadosPokemon);
       });
 
       return listaPokemon;
@@ -89,4 +63,23 @@ export class PokemonService extends ServiceBase<any> {
   }
 
 
+  getDetails(pokemon: PokemonListagem): PokemonListagem {
+
+    this.obterPorNome(pokemon.order.toString()).subscribe(
+      dados => {
+        /* Setando os elementos do objeto PokemonListagem */
+        pokemon.name = dados.name;
+        pokemon.imagem = dados.sprites.front_default;
+
+        /* Iniciando elemento */
+        pokemon.tipo = [];
+        dados.types.forEach(element => {
+          pokemon.tipo.push(element.type.name);
+        });
+
+      }
+    );
+
+    return pokemon;
+  }
 }
