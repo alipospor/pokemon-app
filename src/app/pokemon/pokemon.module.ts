@@ -32,9 +32,9 @@ const ROUTES: Routes = [
   ],
   imports: [
     SharedModule,
-    
+
     PoTemplatesModule,
-    PoModule,
+    PoModule
 
   ],
   exports: [

@@ -12,8 +12,6 @@ import { PoTemplatesModule } from '@po-ui/ng-templates';
 import { SharedModule } from './shared/shared.module';
 import { PokemonModule } from './pokemon/pokemon.module';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,

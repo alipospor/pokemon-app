@@ -1,6 +1,8 @@
 .font {
   font-weight: initial;
   color: #FFF;
+  text-shadow: black 1px 1px 1px;
+  font-size: 13px;
 }
 
 .bug {

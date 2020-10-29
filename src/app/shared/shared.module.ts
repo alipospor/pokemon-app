@@ -2,10 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 /* Pipes */
-import { TypeComponent } from './components/type/type.component';
+import { CamelCasePipe } from './pipes/camel-case.pipe';
+import { OrderPipe } from './pipes/order.pipe';
 
 /* Components */
-import { CamelCasePipe } from './pipes/camel-case.pipe';
+import { TypeComponent } from './components/type/type.component';
+
+/* Modules */
 
 @NgModule({
   imports: [
@@ -14,14 +17,19 @@ import { CamelCasePipe } from './pipes/camel-case.pipe';
   declarations: [
 
     CamelCasePipe,
+    OrderPipe,
 
-    TypeComponent
+    TypeComponent,
+
   ],
   exports: [
     CommonModule,
 
     CamelCasePipe,
-    TypeComponent
+    OrderPipe,
+
+    TypeComponent,
+
   ]
 })
 

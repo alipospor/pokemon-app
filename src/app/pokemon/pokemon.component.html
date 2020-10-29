@@ -1,34 +1,19 @@
 <po-page-default p-title="Lista Pokemon" class="">
-
     <div class="container">
-        <div class="row">
-            <div class="card-deck">
-
-                <div class="col mb-4" *ngFor="let pokemon of pokemonList">
-
-                    <div class="card ">
-                        <div class="card-header">
-                            # {{ pokemon?.order }}
-                        </div>
-                        <img class="card-img-top" src="{{ pokemon?.imagem }}" alt="Imagem {{ pokemon?.name }}"
-                            style="max-width: 12rem;">
-                        <div class="card-body">
-
-                            <h5 class="card-title">{{ pokemon?.name }}</h5>
-                        </div>
-                        <div class="card-footer">
-                            <app-type *ngFor="let type of pokemon.tipo" type="{{ type }}"></app-type>
-                        </div>
-                    </div>
-
+        <div class="cards">
+            <div class="card text-center" style="width: 13rem;" *ngFor="let pokemon of pokemonList">
+                <div class="card-img">
+                    <img src="{{ pokemon?.imagem }}" alt="Imagem {{ pokemon?.name }}">
                 </div>
-
+                <div class="card-body">
+                    <h6 class="text-muted order">N° {{ pokemon?.order | orderPipe }}</h6>
+                    <h5 class="card-title name">{{ pokemon?.name | titlecase }}</h5>
+                </div>
+                <div class="card-footer">
+                    <app-type *ngFor="let type of pokemon.tipo" type="{{ type }}"></app-type>
+                </div>
             </div>
-        </div>
-        <div>
-            <po-button>
 
-            </po-button>
         </div>
     </div>
 </po-page-default>

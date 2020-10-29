@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { PoButtonGroupItem } from '@po-ui/ng-components';
+import {MatCardModule} from '@angular/material/card';
 
 /* Model */
 import { PokemonListagem } from '../core/models/pokemon-listagem.model';
@@ -7,11 +7,11 @@ import { Paging } from '../core/models/paging.model';
 
 /* Service */
 import { PokemonService } from './pokemon.service';
-import { PokemonBase } from '../core/models/pokemon-base.model';
 
 @Component({
   selector: 'app-pokemon',
-  templateUrl: './pokemon.component.html'
+  templateUrl: './pokemon.component.html',
+  styleUrls: ['./pokemon.component.css']
 })
 
 export class PokemonComponent implements OnInit {
@@ -34,6 +34,5 @@ export class PokemonComponent implements OnInit {
   pokemon(nome?: string) {
     console.log(nome)
   }
-
 
 }

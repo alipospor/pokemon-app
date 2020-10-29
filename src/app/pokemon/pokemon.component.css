@@ -1,0 +1,34 @@
+.cards {
+  max-width: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-gap: 1rem;
+  align-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.order {
+  font-size: 120%;
+  text-align: left;
+}
+
+.name {
+  font-family: "Flexo-Demi", arial, sans-serif;
+  color: #313131;
+  text-transform: none;
+  font-size: 160%;
+}
+
+.card-img {
+  background: #F2F2F2;
+  display: block;
+  position: relative;
+  height: auto;
+  max-width: 13rem;
+  /* border-radius: 20px; */
+}
+
+img {
+  width: 118px;
+  height: 118px;
+}
